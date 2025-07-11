@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silent Aura - Luxury Perfumes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --gold: #ffd700;
+            --silver: #c0c0c0;
+            --text: #f1f1f1;
+            --text-dark: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.fade-out {
+            opacity: 0;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--accent);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 1rem 5%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--accent);
+            margin-left: 0.5rem;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background: var(--text);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1615228939098-4d9f0a9b0b1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--gold), var(--silver));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--text);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--gold);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Perfume Sections */
+        .section {
+            padding: 5rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--gold), var(--silver));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--gold), var(--accent));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .perfume-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .perfume-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .perfume-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .perfume-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .perfume-img {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .perfume-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .perfume-card:hover .perfume-img img {
+            transform: scale(1.1);
+        }
+
+        .perfume-content {
+            padding: 1.5rem;
+        }
+
+        .perfume-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .perfume-content p {
+            color: #ccc;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .price span {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .regular {
+            color: var(--text);
+        }
+
+        .premium {
+            color: var(--gold);
+        }
+
+        .car {
+            color: var(--silver);
+        }
+
+        .badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-regular {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+
+        .badge-premium {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+        }
+
+        .badge-car {
+            background: rgba(192, 192, 192, 0.1);
+            color: var(--silver);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 0.5rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links li {
+            list-style: none;
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--text);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                clip-path: circle(0px at 90% -10%);
+                transition: all 0.5s ease-out;
+                pointer-events: none;
+            }
+
+            .nav-links.active {
+                clip-path: circle(1000px at 90% -10%);
+                pointer-events: all;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="navbar">
+            <a href="#" class="logo"><i class="fas fa-spa"></i>Silent <span>Aura</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#regular">Regular</a></li>
+                <li><a href="#premium">Premium</a></li>
+                <li><a href="#car">Car Perfumes</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="floating">Silent Aura</h1>
+            <p>Experience the essence of luxury with our exquisite collection of perfumes. Crafted with precision and passion, each fragrance tells a unique story that lingers in memory.</p>
+            <a href="#regular" class="btn">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Regular Perfumes Section -->
+    <section class="section" id="regular">
+        <div class="section-title">
+            <h2>Regular Collection</h2>
+            <p>Our signature line of perfumes for everyday elegance</p>
+        </div>
+        <div class="perfume-container">
+            <!-- Perfume 1 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="1.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Lady's Secret</h3>
+                    <div class="price">
+                        <span class="regular">₹249.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 2 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="2.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Arabian Love</h3>
+                    <div class="price">
+                        <span class="regular">₹249.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 3 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="3.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Floral Dream</h3>
+                    <div class="price">
+                        <span class="regular">₹249.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 4 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="4.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Black Magic</h3>
+                    <div class="price">
+                        <span class="regular">₹249.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 5 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="5.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Choco Love</h3>
+                    <div class="price">
+                        <span class="regular">₹249.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 6 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="6.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Sauvage Streak</h3>
+                    <div class="price">
+                        <span class="regular">₹249.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 7 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="7.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>King's Icon</h3>
+                    <div class="price">
+                        <span class="regular">₹249.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 8 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="8.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Guity Men</h3>
+                    <div class="price">
+                        <span class="regular">₹249.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    
+    <section class="section" id="premium">
+        <div class="section-title">
+            <h2>Premium Collection</h2>
+            <p>Exclusive fragrances for the discerning connoisseur</p>
+        </div>
+        <div class="perfume-container">
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="9.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Lady's Secret</h3>
+                    <div class="price">
+                        <span class="regular">₹599.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 2 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="10.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Arabian Love</h3>
+                    <div class="price">
+                        <span class="regular">₹599.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 3 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="11.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Floral Dream</h3>
+                    <div class="price">
+                        <span class="regular">₹599.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 4 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="12.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Black Magic</h3>
+                    <div class="price">
+                        <span class="regular">₹599.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 5 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="13.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Choco Love</h3>
+                    <div class="price">
+                        <span class="regular">₹599.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 6 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="9.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Sauvage Streak</h3>
+                    <div class="price">
+                        <span class="regular">₹599.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 7 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="10.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>King's Icon</h3>
+                    <div class="price">
+                        <span class="regular">₹599.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Perfume 8 -->
+            <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="11.PNG" alt="Whispering Woods">
+                </div>
+                <div class="perfume-content">
+                    <h3>Guity Men</h3>
+                    <div class="price">
+                        <span class="regular">₹599.00</span>
+                        <span class="badge badge-regular">Regular</span>
+                    </div>
+                    <a href="https://wa.me/+919665757007" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+        </div> 
+    </section>
+
+
+    <!-- 
+    //Car Perfumes Section
+    <section class="section" id="car">
+        <div class="section-title">
+            <h2>Car Perfumes</h2>
+            <p>Premium fragrances to enhance your driving experience</p>
+        </div>
+        <div class="perfume-container">
+            //Perfume 1
+                <div class="perfume-card">
+                <div class="perfume-img">
+                    <img src="https://images.unsplash.com/photo-1615634262417-98ba8a7c8c1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="Leather & Lace">
+                </div>
+                <div class="perfume-content">
+                    <h3>Leather & Lace</h3>
+                    <p>A sophisticated blend of leather, suede, and soft floral notes.</p>
+                    <div class="price">
+                        <span class="car">$29.99</span>
+                        <span class="badge badge-car">Car</span>
+                    </div>
+                    <a href="https://wa.me/1234567890?text=I'm%20interested%20in%20Leather%20%26%20Lace%20car%20perfume" class="btn">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </section> 
+    -->
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>Get in touch for inquiries or personalized recommendations</p>
+        </div>
+        <div class="contact-container" style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 15px; min-width: 250px;">
+                    <i class="fas fa-phone" style="font-size: 2rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h3 style="margin-bottom: 0.5rem;">Call Us</h3>
+                    <p>+91 96657 57007</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 15px; min-width: 250px;">
+                    <i class="fas fa-envelope" style="font-size: 2rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h3 style="margin-bottom: 0.5rem;">Email Us</h3>
+                    <p>silentaura999@gmail.com</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 15px; min-width: 250px;">
+                    <i class="fab fa-whatsapp" style="font-size: 2rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h3 style="margin-bottom: 0.5rem;">WhatsApp</h3>
+                    <a href="https://wa.me/+919665757007" class="btn" style="display: inline-block; margin-top: 0.5rem;">Chat Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <a href="#" class="footer-logo">Silent <span>Aura</span></a>
+            <div class="social-links">
+                <a href="https://www.instagram.com/silentauraperfumes999?igsh=MTByenF3N2FjdWFzdQ=="><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="copyright">© 2025 Silent Aura. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.querySelector('.preloader');
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Back to top button
+        const backToTopBtn = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('active');
+            } else {
+                backToTopBtn.classList.remove('active');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Scroll animations
+        const perfumeCards = document.querySelectorAll('.perfume-card');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        perfumeCards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
