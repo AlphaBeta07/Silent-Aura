@@ -1,0 +1,258 @@
+<!-- details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfume Details | Silent Aura</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; background-color: #fdfaf5; color: #333; }
+    .perfume-box { max-width: 600px; margin: auto; text-align: center; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); padding: 2rem; border-radius: 8px; }
+    img { max-width: 100%; height: auto; border-radius: 8px; }
+   
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@400;500&display=swap');
+
+  :root {
+    --black: #0a0a0a;
+    --gold: #c5a47e;
+    --white: #ffffff;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  .logo span {
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+  }
+
+  .nav-links li {
+    margin-left: 40px;
+  }
+
+  .nav-links a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold);
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+    .btn {
+      display: inline-block;
+      background: #c5a47e;
+      color: white;
+      padding: 12px 30px;
+      text-decoration: none;
+      margin-top: 20px;
+      font-weight: bold;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .btn:hover { background: #9c7c5b; }
+    .back-btn { margin-top: 2rem; display: inline-block; text-decoration: none; color: #c5a47e; font-weight: bold; }
+    .notes-box { text-align: left; margin-top: 30px; }
+    .notes-box h3 { color: #c5a47e; }
+    .notes-box p { margin-top: 8px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+    <header>
+        <a href="2.html" class="logo">Silent <span>Aura</span></a>
+        <ul class="nav-links">
+            <li><a href="2.html#home">Home</a></li>
+            <li><a href="2.html#collections">Collections</a></li>
+            <li><a href="2.html#about">About</a></li>
+        </ul>
+    </header>
+    <div style="height: 100px;"></div> 
+
+  <div class="perfume-box">
+    <h1 id="perfume-name"></h1>
+    <img id="perfume-img" src="" alt="Perfume Image">
+    <p id="perfume-price"></p>
+    <p id="perfume-category"></p>
+    <div class="notes-box" id="fragrance-notes"></div>
+    <a id="shop-link" class="btn" target="_blank">Shop Now</a><br>
+    <a class="back-btn" href="2.html">← Back to Collection</a>
+  </div>
+
+  <script>
+    
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name") || "Unknown";
+    const img = params.get("img") || "";
+    const price = params.get("price") || "N/A";
+    const category = params.get("category") || "N/A";
+
+    document.getElementById("perfume-name").textContent = name;
+    document.getElementById("perfume-img").src = img;
+    document.getElementById("perfume-price").textContent = `Price: ₹${price}`;
+    document.getElementById("perfume-category").textContent = `Category: ${category}`;
+
+    let finalPrice = 'N/A';
+    if (category.toLowerCase() === 'premium') {
+    finalPrice = '599';
+    } else if (category.toLowerCase() === 'regular') {
+    if (name === 'Arabian Love') finalPrice = '299';
+    else finalPrice = '249';
+    } else if (category.toLowerCase() === 'car') {
+    if (name === 'Floral Dream') finalPrice = '249';
+    else finalPrice = '199';
+    }
+
+    document.getElementById("perfume-price").textContent = `Price: ₹${finalPrice}`;
+    const encodedName = encodeURIComponent(`${name} ${category}`);
+    const waLink = `https://wa.me/+919665757007?text=Send%20me%20details%20of%20${encodedName}`;
+    document.getElementById("shop-link").href = waLink;
+
+    // Fragrance notes dictionary
+    const notes = {
+      "Choco Love": {
+        top: "Vanilla & Chocolate – Sweet & Velvety",
+        heart: "Khus & Rose – Earthy & Floral",
+        base: "Cocoa & Patchouli – Deep & Warm"
+      },
+      "Floral Dream": {
+        top: "Jasmine & Bergamot – Fresh & Bright",
+        heart: "Lily & Peony – Delicate & Romantic",
+        base: "Sandalwood & Musk – Soft & Long-lasting"
+      },
+      "Paris Dream": {
+        top: "Citrus Zest & Pink Pepper – Sparkling & Bold",
+        heart: "Rose & Iris – Classic & Elegant",
+        base: "Amber & Vanilla – Warm & Sensual"
+      },
+      "Happy Boss": {
+        top: "Lemon & Neroli – Uplifting & Crisp",
+        heart: "Lavender & Geranium – Calm & Refined",
+        base: "Vetiver & Tonka Bean – Confident & Deep"
+      },
+      "Romantic Love": {
+        top: "Red Berries & Peach – Sweet & Juicy",
+        heart: "Rose & Jasmine – Floral & Passionate",
+        base: "Musk & Vanilla – Smooth & Warm"
+      },
+      "Fired Red": {
+        top: "Mandarin & Spice – Fiery & Energetic",
+        heart: "Rosewood & Cinnamon – Rich & Bold",
+        base: "Leather & Amber – Warm & Intense"
+      },
+      "Wishy Wish": {
+        top: "Pear & Apple – Fresh & Fruity",
+        heart: "Peony & Freesia – Gentle & Dreamy",
+        base: "White Musk & Cedarwood – Soft & Lasting"
+      },
+      "Arabian Love": {
+        top: "Saffron & Bergamot – Exotic & Fresh",
+        heart: "Oud & Rose – Deep & Romantic",
+        base: "Amber & Musk – Bold & Lasting"
+      },
+      "Lady's Secret": {
+        top: "Citrus & Neroli – Light & Lively",
+        heart: "Jasmine & Magnolia – Feminine & Graceful",
+        base: "Musk & Sandalwood – Smooth & Comforting"
+      },
+      "Black Magic": {
+        top: "Blackcurrant & Mint – Mysterious & Cool",
+        heart: "Violet & Orchid – Enchanting & Unique",
+        base: "Patchouli & Vanilla – Rich & Dark"
+      },
+      "Sauvage Streak": {
+        top: "Calabrian Bergamot – Crisp & Clean",
+        heart: "Lavender – Fresh & Masculine",
+        base: "Ambroxan & Cedarwood – Wild & Woody"
+      },
+      "King's Icon": {
+        top: "Pineapple & Apple – Fruity & Royal",
+        heart: "Birch & Jasmine – Strong & Bold",
+        base: "Oakmoss & Ambergris – Masculine & Regal"
+      },
+      "Guity Men": {
+        top: "Pepper & Lemon – Bold & Sharp",
+        heart: "Orange Blossom & Neroli – Smooth & Bright",
+        base: "Cedarwood & Tonka Bean – Warm & Stylish"
+      },
+      "Kasturi": {
+        top: "Spicy Musk – Deep & Intense",
+        heart: "Amber – Bold & Smooth",
+        base: "Resins & Woods – Strong & Lasting"
+      },
+      "Ignite": {
+        top: "Citrus Spark – Lively & Bright",
+        heart: "Mint & Basil – Cool & Energizing",
+        base: "Cedarwood & Musk – Modern & Clean"
+      },
+      "Open Heart": {
+        top: "Lemon & Pink Pepper – Bright & Fresh",
+        heart: "Lavender & Sage – Soothing & Inviting",
+        base: "Vanilla & Tonka – Sweet & Cozy"
+      }
+    };
+
+    if (notes[name]) {
+      const noteBox = document.getElementById("fragrance-notes");
+      noteBox.innerHTML = `
+        <h3>Fragrance Notes</h3>
+        <h4>Quantity : 60ml</h4>
+        <p><strong>Top Notes:</strong> ${notes[name].top}</p>
+        <p><strong>Heart Notes:</strong> ${notes[name].heart}</p>
+        <p><strong>Base Notes:</strong> ${notes[name].base}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
