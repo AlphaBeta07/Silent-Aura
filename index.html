@@ -114,7 +114,7 @@
         box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
         }
 
-        /* Animated liquid shine effect */
+        /* Animated shine effect */
         header::after {
         content: "";
         position: absolute;
@@ -143,28 +143,63 @@
         }
         }
 
-        /* Logo */
+        /* Logo (visible in both modes) */
         .logo {
         font-family: 'Playfair Display', serif;
         font-size: 28px;
         font-weight: 600;
-        color: var(--black);
+        color: #111; /* visible text color */
         text-decoration: none;
         letter-spacing: 1px;
+        transition: color 0.3s ease;
         }
 
         .logo span {
         color: var(--gold);
         }
 
-        /* Adjust link colors when scrolled */
+        header.scrolled .logo {
+        color: #000000; /* white when scrolled */
+        }
+
+        header.scrolled .logo span {
+        color: var(--dark-gold);
+        }
+
+        /* Nav links */
+        .nav-links {
+        display: flex;
+        list-style: none;
+        }
+
+        .nav-links li {
+        margin-left: 40px;
+        }
+
+        .nav-links a {
+        color: #111; /* visible on light glass */
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: color 0.3s ease;
+        position: relative;
+        }
+
+        .nav-links a:hover {
+        color: var(--dark-gold);
+        }
+
+        /* Dark mode link colors */
         header.scrolled .nav-links a {
-        color: var(--white);
+        color: #000000; /* visible on dark glass */
         }
 
         header.scrolled .nav-links a:hover {
-        color: var(--gold);
+        color: var(--dark-gold);
         }
+
 
         /* Logo styling */
         .logo {
@@ -1519,6 +1554,7 @@
             }
         });
     </script>
+
 
 </body>
 </html>
