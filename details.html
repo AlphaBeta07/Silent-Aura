@@ -433,76 +433,81 @@
 
     // Fragrance Notes Data
     const notes = {
-      // "Choco Love": {
-      //   top: "Vanilla & Chocolate – Sweet & Velvety",
-      //   heart: "Khus & Rose – Earthy & Floral",
-      //   base: "Cocoa & Patchouli – Deep & Warm"
+      "Choco Love": {
+        top: "Vanilla & Chocolate – Sweet & Velvety",
+        heart: "Khus & Rose – Earthy & Floral",
+        base: "Cocoa & Patchouli – Deep & Warm"
+      },
+      "Floral Dream": {
+        top: "Jasmine & Bergamot – Fresh & Bright",
+        heart: "Lily & Peony – Delicate & Romantic",
+        base: "Sandalwood & Musk – Soft & Long-lasting"
+      },
+      "Paris Dream": {
+        top: "Citrus Zest & Pink Pepper – Sparkling & Bold",
+        heart: "Rose & Iris – Classic & Elegant",
+        base: "Amber & Vanilla – Warm & Sensual"
+      },
+      "Happy Boss": {
+        top: "Lemon & Neroli – Uplifting & Crisp",
+        heart: "Lavender & Geranium – Calm & Refined",
+        base: "Vetiver & Tonka Bean – Confident & Deep"
+      },
+      "Romantic Love": {
+        top: "Red Berries & Peach – Sweet & Juicy",
+        heart: "Rose & Jasmine – Floral & Passionate",
+        base: "Musk & Vanilla – Smooth & Warm"
+      },
+      "Wishy Wish": {
+        top: "Pear & Apple – Fresh & Fruity",
+        heart: "Peony & Freesia – Gentle & Dreamy",
+        base: "White Musk & Cedarwood – Soft & Lasting"
+      },
+      "Arabian Love": {
+        top: "Saffron & Bergamot – Exotic & Fresh",
+        heart: "Oud & Rose – Deep & Romantic",
+        base: "Amber & Musk – Bold & Lasting"
+      },
+      "Black Magic": {
+        top: "Blackcurrant & Mint – Mysterious & Cool",
+        heart: "Violet & Orchid – Enchanting & Unique",
+        base: "Patchouli & Vanilla – Rich & Dark"
+      },
+      "King's Icon": {
+        top: "Pineapple & Apple – Fruity & Royal",
+        heart: "Birch & Jasmine – Strong & Bold",
+        base: "Oakmoss & Ambergris – Masculine & Regal"
+      },
+      "Fiero Red":{
+        top: "Lemon, Saffron, Peach",
+        heart: "Orange Blossom, Violet, Cedarwood",
+        base: "Amber, Sandalwood, Oriental Woods",
+      },
+      "Stricker 7":{
+        top: "Bergamot, Artemisia, Cardamom, Lavender",
+        heart: "Cinnamon, Iris, Cedarwood, Tobacco",
+        base: "Sandalwood, Vanilla, Amber, Musk"
+      }
+      // "Fiero Red":{
+
       // },
-      // "Floral Dream": {
-      //   top: "Jasmine & Bergamot – Fresh & Bright",
-      //   heart: "Lily & Peony – Delicate & Romantic",
-      //   base: "Sandalwood & Musk – Soft & Long-lasting"
-      // },
-      // "Paris Dream": {
-      //   top: "Citrus Zest & Pink Pepper – Sparkling & Bold",
-      //   heart: "Rose & Iris – Classic & Elegant",
-      //   base: "Amber & Vanilla – Warm & Sensual"
-      // },
-      // "Happy Boss": {
-      //   top: "Lemon & Neroli – Uplifting & Crisp",
-      //   heart: "Lavender & Geranium – Calm & Refined",
-      //   base: "Vetiver & Tonka Bean – Confident & Deep"
-      // },
-      // "Romantic Love": {
-      //   top: "Red Berries & Peach – Sweet & Juicy",
-      //   heart: "Rose & Jasmine – Floral & Passionate",
-      //   base: "Musk & Vanilla – Smooth & Warm"
-      // },
-      // "Wishy Wish": {
-      //   top: "Pear & Apple – Fresh & Fruity",
-      //   heart: "Peony & Freesia – Gentle & Dreamy",
-      //   base: "White Musk & Cedarwood – Soft & Lasting"
-      // },
-      // "Arabian Love": {
-      //   top: "Saffron & Bergamot – Exotic & Fresh",
-      //   heart: "Oud & Rose – Deep & Romantic",
-      //   base: "Amber & Musk – Bold & Lasting"
-      // },
-      // "Black Magic": {
-      //   top: "Blackcurrant & Mint – Mysterious & Cool",
-      //   heart: "Violet & Orchid – Enchanting & Unique",
-      //   base: "Patchouli & Vanilla – Rich & Dark"
-      // },
-      // "King's Icon": {
-      //   top: "Pineapple & Apple – Fruity & Royal",
-      //   heart: "Birch & Jasmine – Strong & Bold",
-      //   base: "Oakmoss & Ambergris – Masculine & Regal"
+      // "Fiero Red":{
+
       // }
+
     };
 
     if (notes[name]) {
+      const qty = params.get("qty") || "60ml";
       const noteBox = document.getElementById("fragrance-notes");
       noteBox.innerHTML = `
         <h3>Fragrance Notes</h3>
-        <h4>Quantity : 60ml</h4>
+        <h4>Quantity : ${qty}</h4>
         <p><strong>Top Notes:</strong> ${notes[name].top}</p>
         <p><strong>Heart Notes:</strong> ${notes[name].heart}</p>
         <p><strong>Base Notes:</strong> ${notes[name].base}</p>
       `;
     }
   </script>
-  <script>
-    const header = document.getElementById('header');
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-  </script>
-
-
 </body>
 </html>
