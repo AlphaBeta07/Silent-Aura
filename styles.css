@@ -343,6 +343,7 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            border-radius: 5px;
         }
 
         .btn::before {
