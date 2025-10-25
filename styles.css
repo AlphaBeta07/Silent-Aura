@@ -416,6 +416,7 @@
             height: 450px;
             background: var(--gray);
             transition: all 0.5s ease;
+            border-radius: 10px;
         }
 
         .perfume-card:hover {
