@@ -11,730 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-06QRZT3KFK"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-06QRZT3KFK');
-    </script>
-    <style>
-        :root {
-            --black: #0a0a0a;
-            --white: #ffffff;
-            --gold: #c5a47e;
-            --light-gold: #e8d9c5;
-            --dark-gold: #9c7c5b;
-            --gray: #f5f5f5;
-            --dark-gray: #333333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--dark-gray);
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 500;
-        }
-
-        /* Preloader */
-        /* .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--white);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-
-        .preloader.fade-out {
-            opacity: 0;
-        }
-
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 3px solid var(--gold);
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s linear infinite;
-        } */
-
-        @keyframes spin {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Header */
-        /* Liquid Glass Navbar (Light → Dark transition) */
-        header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 18px 5%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1000;
-        border-radius: 40px;
-        margin-top: 5px;
-        /* Light glass base */
-        background: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(12px) saturate(180%);
-        -webkit-backdrop-filter: blur(12px) saturate(180%);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-        transition: all 0.4s ease-in-out;
-        }
-
-        /* Dark “smoky glass” when scrolled */
-        header.scrolled {
-        background: rgba(25, 25, 25, 0.35);
-        backdrop-filter: blur(14px) saturate(200%);
-        -webkit-backdrop-filter: blur(14px) saturate(200%);
-        border-color: rgba(255, 255, 255, 0.1);
-        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Animated shine effect */
-        header::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -50%;
-        width: 200%;
-        height: 100%;
-        background: linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(255, 255, 255, 0.05) 40%,
-            rgba(255, 255, 255, 0) 60%
-        );
-        opacity: 0.6;
-        pointer-events: none;
-        transform: translateX(-100%);
-        animation: glass-shine 8s linear infinite;
-        }
-
-        @keyframes glass-shine {
-        0% {
-            transform: translateX(-100%);
-        }
-        100% {
-            transform: translateX(100%);
-        }
-        }
-
-        /* Logo (visible in both modes) */
-        .logo {
-        font-family: 'Playfair Display', serif;
-        font-size: 28px;
-        font-weight: 600;
-        color: #111; /* visible text color */
-        text-decoration: none;
-        letter-spacing: 1px;
-        transition: color 0.3s ease;
-        }
-
-        .logo span {
-        color: var(--gold);
-        }
-
-        header.scrolled .logo {
-        color: #000000; /* white when scrolled */
-        }
-
-        header.scrolled .logo span {
-        color: var(--dark-gold);
-        }
-
-        /* Nav links */
-        .nav-links {
-        display: flex;
-        list-style: none;
-        }
-
-        .nav-links li {
-        margin-left: 40px;
-        }
-
-        .nav-links a {
-        color: #111; /* visible on light glass */
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        transition: color 0.3s ease;
-        position: relative;
-        }
-
-        .nav-links a:hover {
-        color: var(--dark-gold);
-        }
-
-        /* Dark mode link colors */
-        header.scrolled .nav-links a {
-        color: #000000; /* visible on dark glass */
-        }
-
-        header.scrolled .nav-links a:hover {
-        color: var(--dark-gold);
-        }
-
-
-        /* Logo styling */
-        .logo {
-        font-family: 'Playfair Display', serif;
-        font-size: 28px;
-        font-weight: 600;
-        color: var(--black);
-        text-decoration: none;
-        letter-spacing: 1px;
-        }
-
-        .logo span {
-        color: var(--gold);
-        }
-
-
-        header.scrolled {
-            padding: 15px 5%;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--black);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: var(--dark-gold);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 40px;
-        }
-
-        .nav-links a {
-            color: var(--black);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            background: var(--gold);
-            bottom: -5px;
-            left: 0;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cart-icon {
-            margin-left: 40px;
-            color: var(--black);
-            font-size: 18px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .cart-icon:hover {
-            color: var(--gold);
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-
-        .hamburger div {
-            width: 25px;
-            height: 2px;
-            background: var(--black);
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            margin-top: -80px;
-            position: relative;
-            overflow: hidden;
-            background: url('./bgimg.jpg') no-repeat center center/cover;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .hero-content {
-            max-width: 600px;
-            transform: translateY(50px);
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards 0.5s;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: var(--black);
-        }
-
-        .hero p {
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 30px;
-            color: var(--dark-gray);
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--white);
-            padding: 15px 40px;
-            border-radius: 0;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--black);
-            border: 1px solid var(--black);
-            margin-left: 15px;
-        }
-
-        .btn-outline:hover {
-            background: var(--black);
-            color: var(--white);
-        }
-
-        /* Collections Section */
-        .section {
-            padding: 10px 5%;
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 36px;
-            margin-bottom: 15px;
-            color: var(--black);
-        }
-
-        .section-title p {
-            font-size: 16px;
-            color: var(--dark-gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .section-title .divider {
-            width: 50px;
-            height: 2px;
-            background: var(--gold);
-            margin: 20px auto;
-        }
-
-        .perfume-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .perfume-card {
-            position: relative;
-            overflow: hidden;
-            height: 450px;
-            background: var(--gray);
-            transition: all 0.5s ease;
-        }
-
-        .perfume-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .perfume-img {
-            height: 350px;
-            overflow: hidden;
-        }
-
-        .perfume-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .perfume-card:hover .perfume-img img {
-            transform: scale(1.05);
-        }
-
-        .perfume-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .perfume-info h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
-            color: var(--black);
-        }
-
-        .perfume-info p {
-            font-size: 14px;
-            color: var(--dark-gray);
-            margin-bottom: 15px;
-        }
-
-        .price {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--gold);
-        }
-        
-        .badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--gold);
-            color: var(--white);
-            padding: 5px 10px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        /* About Section */
-        .about {
-            background: url('./image.png') no-repeat center center/cover;
-            padding: 150px 5%;
-            position: relative;
-            color: var(--white);
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        .about-content {
-            max-width: 600px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .about h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        .about p {
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--black);
-            color: var(--white);
-            padding: 80px 5% 40px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .footer-col h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: var(--gold);
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-col ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--gold);
-        }
-
-        .social-links {
-            display: flex;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            margin-right: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: var(--gold);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 30px;
-            text-align: center;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Back to Top */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--gold);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
-
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: var(--dark-gold);
-            transform: translateY(-5px);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero::before {
-                width: 40%;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-                clip-path: circle(0px at 90% -10%);
-                transition: all 0.5s ease-out;
-                pointer-events: none;
-            }
-
-            .nav-links.active {
-                clip-path: circle(1000px at 90% -10%);
-                pointer-events: all;
-            }
-
-            .nav-links li {
-                margin: 15px 0;
-            }
-
-            .cart-icon {
-                margin-left: 20px;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .hamburger.active div:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-
-            .hamburger.active div:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active div:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
-
-            .hero {
-                height: auto;
-                padding: 150px 5% 80px;
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero::before {
-                display: none;
-            }
-
-            .hero-content {
-                margin-bottom: 50px;
-            }
-
-            .btn-outline {
-                margin-left: 0;
-                margin-top: 15px;
-            }
-
-            .section-title h2 {
-                font-size: 28px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .newsletter-form input {
-                margin-bottom: 15px;
-            }
-
-            .newsletter-form button {
-                padding: 15px;
-            }
-        }
-        @media (max-width: 576px) {
-            .perfume-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-        }
-        .perfume-card .btn {
-            white-space: nowrap;
-            width: 100%;
-            text-align: center;
-            display: inline-block;
-        }
-
-    </style>
+    <!-- <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-06QRZT3KFK');
+    </script> -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Preloader -->
@@ -795,7 +79,7 @@
                         <span class="badge badge-regular">Best Selling</span>
                     </div>
                     <!-- <a class="btn">Out of Stock</a> -->
-                    <a href="details.html?name=Fiero%20Red&img=11.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Fiero%20Red&img=11.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 13 -->
@@ -809,7 +93,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Best Selling</span>
                     </div>
-                    <a href="details.html?name=Happy%20Boss&img=11.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Happy%20Boss&img=11.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 2 -->
@@ -823,7 +107,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Premium</span>
                     </div>
-                    <a href="details.html?name=Paris%20Dream&img=10.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Paris%20Dream&img=10.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 3 -->
@@ -837,7 +121,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Premium</span>
                     </div>
-                    <a href="details.html?name=Happy%20Boss&img=11.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Happy%20Boss&img=11.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 4 -->
@@ -851,7 +135,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Premium</span>
                     </div>
-                    <a href="details.html?name=Romantic%20Love&img=13.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Romantic%20Love&img=13.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 5 -->
@@ -866,7 +150,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Premium</span>
                     </div>
-                    <a href="details.html?name=Floral%20Dream&img=9.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Floral%20Dream&img=9.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 6 -->
@@ -880,7 +164,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Premium</span>
                     </div>
-                    <a href="details.html?name=Wishy%20Wish&img=13.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Wishy%20Wish&img=13.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 7 -->
@@ -894,7 +178,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Premium</span>
                     </div>
-                    <a href="details.html?name=Choco%20Love&img=11.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Choco%20Love&img=11.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 8 -->
@@ -908,7 +192,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Premium</span>
                     </div>
-                    <a href="details.html?name=Opem%20Heart&img=10.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Opem%20Heart&img=10.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 9 -->
@@ -922,7 +206,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Premium</span>
                     </div>
-                    <a href="details.html?name=Diptique&img=11.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Diptique&img=11.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 10 -->
@@ -936,7 +220,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Premium</span>
                     </div>
-                    <a href="details.html?name=Fired%20Red&img=11.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Fired%20Red&img=11.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div> -->
             <!-- Perfume 11 -->
@@ -950,7 +234,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Premium</span>
                     </div>
-                    <a href="details.html?name=Romantic%20Night&img=13.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Romantic%20Night&img=13.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 12 -->
@@ -964,7 +248,7 @@
                         <span class="regular">₹599.00</span>
                         <span class="badge badge-regular">Premium</span>
                     </div>
-                    <a href="details.html?name=Happy%20Heart&img=12.PNG&price=599&category=Premium" class="btn">Shop Now</a>
+                    <a href="details.html?name=Happy%20Heart&img=12.PNG&price=599&category=Premium&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
         </div>
@@ -990,7 +274,7 @@
                         <span class="badge badge-regular">Best Selling</span>
                     </div>
                     <!-- <a class="btn">Out of Stock</a> -->
-                    <a href="details.html?name=Fiero%20Red&img=11.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Fiero%20Red&img=11.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 13 -->
@@ -1004,7 +288,7 @@
                         <span class="regular">₹449.00</span>
                         <span class="badge badge-regular">Best Selling</span>
                     </div>
-                    <a href="details.html?name=Happy%20Boss&img=11.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Happy%20Boss&img=11.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 2 -->
@@ -1018,7 +302,7 @@
                         <span class="regular">₹449.00</span>
                         <span class="badge badge-regular">Premium 30ML</span>
                     </div>
-                    <a href="details.html?name=Paris%20Dream&img=10.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Paris%20Dream&img=10.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 3 -->
@@ -1032,7 +316,7 @@
                         <span class="regular">₹449.00</span>
                         <span class="badge badge-regular">Premium 30ML</span>
                     </div>
-                    <a href="details.html?name=Happy%20Boss&img=11.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Happy%20Boss&img=11.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 4 -->
@@ -1046,7 +330,7 @@
                         <span class="regular">₹449.00</span>
                         <span class="badge badge-regular">Premium 30ML</span>
                     </div>
-                    <a href="details.html?name=Romantic%20Love&img=13.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Romantic%20Love&img=13.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 5 -->
@@ -1061,7 +345,7 @@
                         <span class="regular">₹449.00</span>
                         <span class="badge badge-regular">Premium 30ML</span>
                     </div>
-                    <a href="details.html?name=Floral%20Dream&img=9.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Floral%20Dream&img=9.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 6 -->
@@ -1075,7 +359,7 @@
                         <span class="regular">₹449.00</span>
                         <span class="badge badge-regular">Premium 30ML</span>
                     </div>
-                    <a href="details.html?name=Wishy%20Wish&img=13.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Wishy%20Wish&img=13.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 7 -->
@@ -1089,7 +373,7 @@
                         <span class="regular">₹449.00</span>
                         <span class="badge badge-regular">Premium 30ML</span>
                     </div>
-                    <a href="details.html?name=Choco%20Love&img=11.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Choco%20Love&img=11.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 8 -->
@@ -1103,7 +387,7 @@
                         <span class="regular">₹449.00</span>
                         <span class="badge badge-regular">Premium 30ML</span>
                     </div>
-                    <a href="details.html?name=Opem%20Heart&img=10.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Opem%20Heart&img=10.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 9 -->
@@ -1117,7 +401,7 @@
                         <span class="regular">₹449.00</span>
                         <span class="badge badge-regular">Premium 30ML</span>
                     </div>
-                    <a href="details.html?name=Diptique&img=11.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Diptique&img=11.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 10 -->
@@ -1145,7 +429,7 @@
                         <span class="regular">₹449.00</span>
                         <span class="badge badge-regular">Premium 30ML</span>
                     </div>
-                    <a href="details.html?name=Romantic%20Night&img=13.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Romantic%20Night&img=13.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 12 -->
@@ -1159,7 +443,7 @@
                         <span class="regular">₹449.00</span>
                         <span class="badge badge-regular">Premium 30ML</span>
                     </div>
-                    <a href="details.html?name=Happy%20Heart&img=12.PNG&price=449&category=Premium30ML" class="btn">Shop Now</a>
+                    <a href="details.html?name=Happy%20Heart&img=12.PNG&price=449&category=Premium30ML&qty=30ml" class="btn">Shop Now</a>
                 </div>
             </div>
         </div>
@@ -1185,7 +469,7 @@
                         <span class="regular">₹299.00</span>
                         <span class="badge badge-regular">Best Selling</span>
                     </div>
-                    <a href="details.html?name=Arabian%20Love&img=2.PNG&price=299&category=Regular" class="btn">Shop Now</a>
+                    <a href="details.html?name=Arabian%20Love&img=2.PNG&price=299&category=Regular&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 9 -->
@@ -1199,7 +483,7 @@
                         <span class="regular">₹299.00</span>
                         <span class="badge badge-regular">Regular</span>
                     </div>
-                    <a href="details.html?name=Marq%20Love&img=2.PNG&price=299&category=Regular" class="btn">Shop Now</a>
+                    <a href="details.html?name=Marq%20Love&img=2.PNG&price=299&category=Regular&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 10 -->
@@ -1213,7 +497,7 @@
                         <span class="regular">₹299.00</span>
                         <span class="badge badge-regular">Regular</span>
                     </div>
-                    <a href="details.html?name=Million%20Love&img=2.PNG&price=299&category=Regular" class="btn">Shop Now</a>
+                    <a href="details.html?name=Million%20Love&img=2.PNG&price=299&category=Regular&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 2 -->
@@ -1227,7 +511,7 @@
                         <span class="regular">₹249.00</span>
                         <span class="badge badge-regular">Regular</span>
                     </div>
-                    <a href="details.html?name=Lady's%20Secret&img=1.PNG&price=249&category=Regular" class="btn">Shop Now</a>
+                    <a href="details.html?name=Lady's%20Secret&img=1.PNG&price=249&category=Regular&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             
@@ -1242,7 +526,7 @@
                         <span class="regular">₹249.00</span>
                         <span class="badge badge-regular">Regular</span>
                     </div>
-                    <a href="details.html?name=Floral%20Dream&img=3.PNG&price=249&category=Regular" class="btn">Shop Now</a>
+                    <a href="details.html?name=Floral%20Dream&img=3.PNG&price=249&category=Regular&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 4 -->
@@ -1256,7 +540,7 @@
                         <span class="regular">₹249.00</span>
                         <span class="badge badge-regular">Regular</span>
                     </div>
-                    <a href="details.html?name=Black%20Magic&img=4.PNG&price=249&category=Regular" class="btn">Shop Now</a>
+                    <a href="details.html?name=Black%20Magic&img=4.PNG&price=249&category=Regular&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 5 -->
@@ -1270,7 +554,7 @@
                         <span class="regular">₹249.00</span>
                         <span class="badge badge-regular">Regular</span>
                     </div>
-                    <a href="details.html?name=Choco%20Love&img=5.PNG&price=2499&category=Regular" class="btn">Shop Now</a>
+                    <a href="details.html?name=Choco%20Love&img=5.PNG&price=2499&category=Regular&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 6 -->
@@ -1284,7 +568,7 @@
                         <span class="regular">₹249.00</span>
                         <span class="badge badge-regular">Regular</span>
                     </div>
-                    <a href="details.html?name=Sauvage%20Streak&img=6.PNG&price=2499&category=Regular" class="btn">Shop Now</a>
+                    <a href="details.html?name=Sauvage%20Streak&img=6.PNG&price=2499&category=Regular&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 7 -->
@@ -1298,7 +582,7 @@
                         <span class="regular">₹249.00</span>
                         <span class="badge badge-regular">Regular</span>
                     </div>
-                    <a href="details.html?name=King's%20Icon&img=7.PNG&price=249&category=Regular" class="btn">Shop Now</a>
+                    <a href="details.html?name=King's%20Icon&img=7.PNG&price=249&category=Regular&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 8 -->
@@ -1312,7 +596,7 @@
                         <span class="regular">₹249.00</span>
                         <span class="badge badge-regular">Regular</span>
                     </div>
-                    <a href="details.html?name=Guilty%20Men&img=8.PNG&price=249&category=Regular" class="btn">Shop Now</a>
+                    <a href="details.html?name=Guilty%20Men&img=8.PNG&price=249&category=Regular&qty=60ml" class="btn">Shop Now</a>
                 </div>
             </div>
         </div>
@@ -1338,7 +622,7 @@
                         <span class="regular">₹199.00</span>
                         <span class="badge badge-regular">Car</span>
                     </div>
-                    <a href="details.html?name=Kasturi&img=9.PNG&price=199&category=Car" class="btn">Shop Now</a>
+                    <a href="details.html?name=Kasturi&img=9.PNG&price=199&category=Car&qty=6ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 2 -->
@@ -1352,7 +636,7 @@
                         <span class="regular">₹199.00</span>
                         <span class="badge badge-regular">Car</span>
                     </div>
-                    <a href="details.html?name=Ignite&img=15.PNG&price=199&category=Car" class="btn">Shop Now</a>
+                    <a href="details.html?name=Ignite&img=15.PNG&price=199&category=Car&qty=6ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 3 -->
@@ -1366,7 +650,7 @@
                         <span class="regular">₹199.00</span>
                         <span class="badge badge-regular">Car</span>
                     </div>
-                    <a href="details.html?name=Paris%20Dream&img=14.PNG&price=199&category=Car" class="btn">Shop Now</a>
+                    <a href="details.html?name=Paris%20Dream&img=14.PNG&price=199&category=Car&qty=6ml" class="btn">Shop Now</a>
                 </div>
             </div>   
             <!-- Perfume 4 -->
@@ -1380,7 +664,7 @@
                         <span class="regular">₹199.00</span>
                         <span class="badge badge-regular">Car</span>
                     </div>
-                    <a href="details.html?name=Opem%20Heart&img=15.PNG&price=199&category=Car" class="btn">Shop Now</a>
+                    <a href="details.html?name=Opem%20Heart&img=15.PNG&price=199&category=Car&qty=6ml" class="btn">Shop Now</a>
                 </div>
             </div>
             <!-- Perfume 5 -->
@@ -1394,7 +678,7 @@
                         <span class="regular">₹249.00</span>
                         <span class="badge badge-regular">Car</span>
                     </div>
-                    <a href="details.html?name=Floral%20Dream&img=16.PNG&price=249&category=Car" class="btn">Shop Now</a>
+                    <a href="details.html?name=Floral%20Dream&img=16.PNG&price=249&category=Car&qty=6ml" class="btn">Shop Now</a>
                 </div>
             </div>
         </div>
